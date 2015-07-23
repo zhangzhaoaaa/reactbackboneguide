@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Backbone+ReactJs</h1>
+					<h1>使用指南</h1>
+					<p>
+						<small>Created by <a href="https://github.com/zhangzhaoaaa">Mike Zhang</a></small>
+					</p>
+				</section>
+
+				<section data-transition="convex">
+					<h2>大纲</h2>
+					<ol>
+						<li>Backbone.js简介</li>
+						<li>React.js简介</li>
+						<li>为什么用React？</li>
+						<li>怎么用React?</li>
+						<li>搭建示例应用</li>
+					</ol>
+				</section>
+
+				<section data-transition="convex">
+					<section >
+						<h2>Backbone.js简介</h2>
+						<p>一个MV*的前端框架</p>
+						<p>Backbone提供了一个最小集的数据结构(Models, Collections)和用户接口(Views, URLs)，这些对于构建动态的JavaScript应用是非常有用的基本实体</p>
+					</section>
+					<section >
+						<h2>Models(模型)</h2>
+						<p>Models（模型）是任何Javascript应用的核心，包括数据交互及与其相关的大量逻辑： 转换、验证、计算属性和访问控制。你可以用特定的方法扩展 Backbone.Model，Model 也提供了一组基本的管理变化的功能</p>
+						<p>Collections(集合)是模型的有序组合，把模型组合来管理，可以让我们编写应用逻辑时基于一个组合来通知，它包含了任何一个model的改变，这样也避免了手动去观察单个的model实例</p>
+					</section>
+					<section >
+						<h2>Views(视图)</h2>
+						<p>用户阅读和编辑的模块，可以使用template模板引擎渲染和更新视图内容；在视图中通过添加事件监听到视图中的元素，把事件处理委托给事件处理器</p>
+					</section>
+					<section >
+						<h2>Controller(控制器)</h2>
+						<p>Backbone的Views通常包含了“controller”的逻辑，而且Routers(路由)也用于帮助管理应用状态，但这两者都不是传统MVC模式中真正意义上的控制器，所以它更应该属于MV*框架</p>
+					</section>
+					<section >
+						<h2>Backbone典型请求处理</h2>
+						<p><img src="images/backbone.png" /> </p>
+						<p>这里显示了URL路由，DOM事件(比如，鼠标点击)，以及Model事件(比如，属性changes)在View中所有触发器的处理逻辑(handling logic)。handlers会更新DOM和 Models，也可能触发其它事件。Models与数据源同步时有可能带来与后端服务器的通讯</p>
+					</section>
+				</section>
+
+				<section data-transition="convex">
+					<section>
+						<h2>React.js简介</h2>
+						<p>
+							用于构建用户界面的JAVASCRIPT库
+						</p>
+						<p>
+						<ol>
+							<li>仅仅是UI</li>
+							<li>虚拟DOM</li>
+							<li>数据流</li>
+						</ol>
+						</p>
+
+					</section>
+					<section >
+						<h2>仅仅是UI</h2>
+						<p>
+							许多人使用React作为MVC架构的V层。 尽管React并没有假设过你的其余技术栈， 但它仍可以作为一个小特征轻易地在已有项目中使用
+						</p>
+					</section>
+					<section >
+						<h2>虚拟DOM</h2>
+						<p>
+							React为了更高超的性能而使用虚拟DOM作为其不同的实现。 它同时也可以由服务端Node.js渲染 － 而不需要过重的浏览器DOM支持
+						</p>
+					</section>
+					<section >
+						<h2>数据流</h2>
+						<p>
+							React实现了单向响应的数据流，从而减少了重复代码，这也是它为什么比传统数据绑定更简单。
+						</p>
+					</section>
+				</section>
+
+				<section>
+					<h2>React最简单示例</h2>
+					<p><iframe width="100%" height="300" src="//jsfiddle.net/zeromike/jdqw4ecv/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+					</p>
+				</section>
+				<section data-transition="convex">
+					<h2>为什么用React？</h2>
+					<ul>
+						<li>api 少，类库易学</li>
+						<li>组件化开发，组件内聚，易于组合，易于维护</li>
+						<li>原生组件和自定义组件融合渲染</li>
+						<li>状态/属性驱动全局更新，不用关注细节更新</li>
+						<li>commonjs 生态圈/工具链完善</li>
+					</ul>
+				</section>
+
+				<section data-transition="convex">
+					<h2>怎么用React？</h2>
+					<p>基础知识</p>
+					<p class="fragment">jsx</p>
+
+					<p class="fragment">event</p>
+
+					<p class="fragment">composition</p>
+
+					<p class="fragment">props/state</p>
+
+					<p class="fragment">mixin</p>
+
+					<p class="fragment">form</p>
+
+					<p class="fragment">refs</p>
+
+					<p class="fragment">component api</p>
+
+					<p class="fragment">top api</p>
+				</section>
+				<section>
+					<h2>jsx</h2>
+					<p>类似 xml 的语法，用来描述组件树</p>
+					<pre><code>
+<div className="x">
+	<a href="#">#</a>
+	<Component x="y">1</Component>
+</div>
+					</code></pre>
+            		<pre><code>
+React.createElement('div',{
+className:'x'
+},[
+React.createElement('a',{href:'#'},'#'),
+React.createElement(Component,{x:'y'},1);
+]);
+			        </code></pre>
+					<p>注意和 html 语法不太一样，比如必须是驼峰命名，
+						以及属性名不能和 js 关键字冲突，例如：className,readOnly
+					</p>
+				</section>
+
+				<section>
+					<h2>jsx 嵌入变量</h2>
+
+					<p>可以通过 {变量名} 来将变量的值作为属性值</p>
+
+					<iframe width="100%" height="300" data-src="//jsfiddle.net/yiminghe/1gofL4ra/2/embedded/"
+							allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+				</section>
+
+				<section>
+					<h2>jsx spread</h2>
+
+					<p>可以用通过 {...obj} 来批量设置一个对象的键值对到组件的属性，注意顺序</p>
+
+					<iframe width="100%" height="300"
+							data-src="//jsfiddle.net/yiminghe/gb8uy7rk/1/embedded/" allowfullscreen="allowfullscreen"
+							frameborder="0"></iframe>
+				</section>
+
+				<section>
+					<h2>event</h2>
+
+					<p>可以通过设置原生 dom 组件的 onEventType 属性来监听 dom 事件，例如 onClick, onMouseDown，在加强组件内聚性的同时，避免了传统 html 的全局变量污染</p>
+
+					<iframe width="100%" height="300" data-src="//jsfiddle.net/yiminghe/76dozccr/1/embedded/"
+							allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+					<p>注意：事件回调函数参数为标准化的事件对象，可以不用考虑 ie</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>组合</h2>
+
+						<p>我们可以像使用原生 dom 组件一样使用自定义的组件</p>
+
+						<iframe width="100%" height="300" data-src="//jsfiddle.net/yiminghe/p3p1ebde/1/embedded/"
+								allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+					</section>
+
+					<section>
+						<h2>组合 children</h2>
+
+						<p>自定义组件中我们可以通过 this.props.children 访问自定义组件的子节点</p>
+
+						<iframe width="100%" height="300" data-src="//jsfiddle.net/yiminghe/du1ou19g/1/embedded/"
+								allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>props</h2>
+
+						<p>通过 this.props 我们可以获取传递给该组件的属性值，还可以通过定义 getDefaultProps 来指定默认属性值</p>
+
+						<iframe width="100%" height="300" data-src="//jsfiddle.net/yiminghe/jooayz20/1/embedded/"
+								allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+						<p>注意：默认值为所有组件实例共享的</p>
+					</section>
+
+					<section>
+						<h2>prop validation</h2>
+
+						<p>通过指定 propTypes 可以校验属性值的类型</p>
+
+						<iframe width="100%" height="300" data-src="//jsfiddle.net/yiminghe/jooayz20/2/embedded/"
+								allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+						<p>注意：校验仅为提升开发者体验</p>
+					</section>
+
+					<section>
+						<h2>state</h2>
+						<p>组件内部的状态，可以使用 state</p>
+
+						<iframe width="100%" height="300" data-src="//jsfiddle.net/yiminghe/6nmwxd7z/1/embedded/"
+								allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+					</section>
+				</section>
+
+				<section>
+					<h2>mixin</h2>
+
+					<p>mixin 是一个普通对象，通过 mixin 我们可以在不同组件间共享代码</p>
+
+					<iframe width="100%" height="300" data-src="//jsfiddle.net/yiminghe/t5gpdj7g/1/embedded/"
+							allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+				</section>
+
+				<section>
+					<section>
+						<h2>form</h2>
+
+						<p>和 html 的不同点：</p>
+						<ul>
+							<li>value/checked 属性设置后，用户输入无效</li>
+							<li>textarea 的值要设置在 value 属性</li>
+							<li>select 的 value 属性可以是数组，不建议使用 option 的 selected 属性</li>
+							<li>input/textarea 的 onChange 用户每次输入都会触发（即使不失去焦点）</li>
+							<li>radio/checkbox 点击后触发 onChange</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>controlled components</h2>
+
+						<p>如果设置了 value 属性，那么改组件变为受控组件，用户无法输入，除非程序改变 value 属性</p>
+
+						<iframe width="100%" height="300" data-src="//jsfiddle.net/yiminghe/3jwjLkrk/1/embedded/"
+								allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+					</section>
+
+					<section>
+						<h2>controlled components</h2>
+
+						<p>可以通过监听 onChange 事件结合 state 来改变 input 的值</p>
+
+						<iframe width="100%" height="300" data-src="//jsfiddle.net/yiminghe/3jwjLkrk/2/embedded/"
+								allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+					</section>
+
+					<section>
+						<h2>uncontrolled components</h2>
+
+						<p>设置 defaultValue 为设置 input 的初始值，之后 input 的值由用户输入</p>
+
+						<iframe width="100%" height="300"
+								data-src="//jsfiddle.net/yiminghe/ex46s6n2/1/embedded/"
+								allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+						<p>类似还有 defaultChecked</p>
+					</section>
+				</section>
+
+				<section>
+					<h2>ref</h2>
+
+					<p>该功能是为了结合现有非 react 类库，通过 ref/refs 可以取得组件实例，进而取得原生节点</p>
+
+					<iframe width="100%" height="300" data-src="//jsfiddle.net/yiminghe/ey56o3md/1/embedded/"
+							allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+					<p>注意：尽量通过 state/props 更新组件，不要使用该功能</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>component api</h2>
+						<p>React 组件实例在渲染的时候创建。</p>
+						<ul>
+							<li>setState 该函数在 setState 执行完毕并且组件重新渲染完成之后调用</li>
+							<li>replaceState 类似于 setState()，但是删除之前所有已存在的 state 键，这些键都不在 nextState 中</li>
+							<li>forceUpdate 调用 forceUpdate() 将会导致 render() 方法在相应的组件上被调用，并且子级组件也会调用自己的 render()，但是如果标记改变了，那么 React 仅会更新 DOM</li>
+							<li>getDOMNode 如果组件已经挂载到了 DOM 上，该方法返回相应的本地浏览器 DOM 元素</li>
+						</ul>
+					</section>
+					<section>
+						<h2>component api</h2>
+						<ul>
+							<li>isMounted 如果组件渲染到了 DOM 中，isMounted() 返回 true</li>
+							<li>setProps 调用 setProps() 来改变组件的属性，触发一次重新渲染</li>
+							<li>setProps 调用 setProps() 来改变组件的属性，触发一次重新渲染</li>
+							<li>replaceProps 类似于 setProps()，但是删除所有已存在的 props，而不是合并新旧两个 props 对象</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Component Specifications</h2>
+						<p>React.createClass 定义时允许传入的函数，会在特定生命周期内调用</p>
+						<ul>
+							<li>getInitialState 在组件挂载之前调用一次。返回值将会作为 this.state 的初始值。</li>
+							<li>render 返回组件树. 必须设置</li>
+							<li>getDefaultProps 在组件类创建的时候调用一次，然后返回值被缓存下来</li>
+							<li>propTypes 允许验证传入到组件的 props</li>
+							<li>mixins 允许使用混合来在多个组件之间共享行为</li>
+							<li>statics 允许你定义静态的方法，这些静态的方法可以在组件类上调用</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Component Specifications</h2>
+						<ul>
+							<li>displayName 字符串用于输出调试信息。JSX 自动设置该值</li>
+							<li>componentDidMount 渲染到 dom 树中调用，只在客户端调用，可用于获取原生节点</li>
+						</ul>
+					</section>
+					<section>
+						<h2>component lifecycle</h2>
+						<p>许多方法在组件生命周期中某个确定的时间点执行</p>
+						<ul>
+							<li>componentWillMount 在初始化渲染执行之前立刻调用</li>
+							<li>componentDidMount 在初始化渲染执行之后立刻调用一次</li>
+							<li>componentWillReceiveProps 在组件接收到新的 props 的时候调用。在初始化渲染的时候，该方法不会调用</li>
+						</ul>
+					</section>
+					<section>
+						<h2>component lifecycle</h2>
+						<ul>
+							<li>shouldComponentUpdate 在接收到新的 props 或者 state，将要渲染之前调用</li>
+							<li>componentWillUpdate 在接收到新的 props 或者 state 之前立刻调用</li>
+							<li>componentDidUpdate  在组件的更新已经同步到 DOM 中之后立刻被调用</li>
+							<li>componentWillUnmount  在组件从 DOM 中移除的时候立刻被调用</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<h2>top api</h2>
+					<section>
+						<ul>
+							<li>React.createClass 创建组件类</li>
+							<li>React.createElement 创建并返回一个新的指定类型的 ReactElement</li>
+							<li>React.createFactory 返回一个生成指定类型 ReactElements 的函数</li>
+							<li>React.render 渲染一个 ReactElement 到 DOM 中</li>
+							<li>React.unmountComponentAtNode 从 DOM 中移除已经挂载的 React 组件，清除相应的事件处理器和 state</li>
+							<li>React.renderToString 把组件渲染成原始的 HTML 字符串,该方法应该仅在服务器端使用</li>
+						</ul>
+					</section>
+					<section>
+						<br>
+						<ul>
+							<li>React.renderToStaticMarkup 和 renderToString 类似，除了不创建额外的 DOM 属性，例如 data-react-id，因为这些属性仅在 React 内部使用。</li>
+							<li>React.isValidElement 判断对象是否是一个 ReactElement</li>
+							<li>React.DOM 运用 React.createElement 为 DOM 组件提供了方便的包装，仅在未使用 JSX 的时候适用</li>
+							<li>React.PropTypes 包含了能与组件 propTypes 对象共用的类型，用于验证传入组件的 props</li>
+							<li>React.initializeTouchEvents 配置 React 的事件系统，使 React 能处理移动设备的触摸（ touch ）事件</li>
+							<li>React.Children 为处理 this.props.children 这个封闭的数据结构提供了有用的工具。</li>
+						</ul>
+					</section>
+				</section>
+
+
+				<section data-transition="convex">
+					<section>
+						<h2>搭建示例应用</h2>
+						<p>
+							显示数据-->点击按钮-->更新数据
+						</p>
+					</section>
+					<section>
+						<h2>React开发步骤</h2>
+						<p>
+						<ol>
+							<li>拆分用户界面为一个组件树</li>
+							<li>利用 React ，创建应用的一个静态版本</li>
+							<li>识别出最小的（但是完整的）代表 UI 的 state </li>
+							<li>确认 state 的生命周期</li>
+							<li>添加反向数据流</li>
+						</ol>
+						</p>
+					</section>
+					<section>
+						<h2>组件分解</h2>
+						<p>
+						<ul>
+							<li>
+								顶层 HelloComponents
+								<ul>
+									<li>
+										信息显示区 HelloInfo
+									</li>
+									<li>
+										信息表单 HelloForm
+									</li>
+								</ul>
+							</li>
+						</ul>
+						</p>
+					</section>
+					<section>
+						<h2>代码</h2>
+						<p>
+							代码请参考<a href="https://github.com/zhangzhaoaaa/hello-react-backbone">代码</a>
+						</p>
+					</section>
+					<section>
+						<h2>Backbone+React整合</h2>
+						<p>
+						<ol>
+							<li>构建Backbone的Model</li>
+							<li>将构建好的Model对象、获取Json数据的方法，传入React顶级组件中</li>
+							<li>构建Model的mixin对象，设定到顶级组件中</li>
+						</ol>
+						</p>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
